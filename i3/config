@@ -106,19 +106,17 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-set $feh exec --no-startup-id feh --bg-scale ~/Info/LW/desk.png
-
 # switch to workspace
-bindsym $mod+1 workspace $ws1; $feh
-bindsym $mod+2 workspace $ws2; $feh
-bindsym $mod+3 workspace $ws3; $feh
-bindsym $mod+4 workspace $ws4; $feh
-bindsym $mod+5 workspace $ws5; $feh
-bindsym $mod+6 workspace $ws6; $feh
-bindsym $mod+7 workspace $ws7; $feh
-bindsym $mod+8 workspace $ws8; $feh
-bindsym $mod+9 workspace $ws9; $feh
-bindsym $mod+0 workspace $ws10; $feh
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -166,9 +164,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+#volume controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# https://thomashunter.name/i3-configurator/
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -178,7 +179,6 @@ bar {
         
         colors {
           background #152133
-          statusline #ffffff
           separator #666666
 
           #<colorclass>      <border> <background> <text>
@@ -191,8 +191,22 @@ bar {
         }
 }
 
+#language
 exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
 
+#lock
 bindsym $mod+Shift+Delete exec "i3lock --color=010101 -t -f"
 
+#wallpapers
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper.png
+
 #autostart
+#assign [class="qmmp"] 1
+#assign [class="Telegram"] 2
+#assign [class="Slack"] 2
+#assign [class="Chromium"] 3
+
+#exec /usr/bin/qmmp
+#exec /usr/bin/telegram-desktop
+#exec /usr/bin/google-chrome-stable
+#exec /usr/bin/slack
