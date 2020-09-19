@@ -1,0 +1,45 @@
+separator_block_width=15
+
+[cpu]
+command=./cpu_usage2/cpu_usage2
+interval=persist
+format=json
+markup=pango
+REFRESH_TIME=3
+WARN_PERCENT=50
+CRIT_PERCENT=80
+DECIMALS=2
+
+[memory1]
+command=./memory/memory
+interval=10
+label=RAM: 
+
+[disk]
+command=./disk/disk
+interval=60
+ALERT_LOW=10
+LABEL=HDD (home):
+
+[iface]
+command=./iface/iface
+interval=10
+#color=#00ff00
+
+[battery]
+command=./battery/battery
+interval=30
+LABEL=⚡
+
+[volume]
+command=./volume-pulseaudio/volume-pulseaudio -S
+format=json
+interval=persist
+
+[lang]
+command=./xkb_layout/xkb_layout
+interval=persist
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=5
