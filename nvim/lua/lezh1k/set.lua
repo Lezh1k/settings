@@ -26,6 +26,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
 vim.opt.colorcolumn = "120"
 
+vim.opt.title = true
+vim.opt.clipboard = 'unnamedplus'
