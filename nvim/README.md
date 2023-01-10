@@ -5,6 +5,9 @@
 3. run `:PackerSync`
 4. restart and enjoy.
 
+## How to enable LSP servers
+
+Use `:Mason` command. See [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim) repository.
 
 ## Roadmap
 
