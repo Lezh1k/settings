@@ -115,3 +115,22 @@ body {
 .bookmark:hover {
   color: #fff;
 }
+
+.search {
+  display: flex;
+  max-width: 560px;
+  width: 100%;
+}
+
+.search-input {
+  height: 24px;
+  width: 100%;
+  font-family: "Roboto";
+  font-size: 1rem;
+  padding: .4em .5em
+}
+
+.search-button {
+  cursor: pointer;
+  width: 10%;
+}
