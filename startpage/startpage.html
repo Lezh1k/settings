@@ -1,89 +1,101 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <title>Home</title>
-    <link rel="stylesheet" href="./styles/startpage.css">
-    <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Home</title>
+  <link rel="stylesheet" href="./styles/startpage.css">
+  <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
 </head>
+
 <body>
-    <div class="container">
-        <div id="clock"></div>
-        <form action="https://www.google.com/search" method="get" class="search">
-          <input type="text" name="q" value="" placeholder="search">
-          <button type="submit"></button>
-        </form>
+  <div class="container">
+    <div id="clock"></div>
 
-        <div class="bookmark-container">
-            <div class="bookmark-set">
-                <div class="bookmark-title">Exparte</div>
-                <div class="bookmark-inner-container">
-                    <a class="bookmark" href="https://dev.azure.com/exparte/">Git</a>
-                    <a class="bookmark" href="https://adb-7084812004222784.4.azuredatabricks.net/?o=7084812004222784#ml/dashboard">Bricks</a>
-                    <a class="bookmark" href="https://portal.azure.com">Azure</a>
-                    <a class="bookmark" href="https://exparte.atlassian.net/jira/">Jira</a>
-                    <a class="bookmark" href="https://exparte.atlassian.net/wiki/home">Confluence</a>
-                    <!--todo add items for tempo and things like that-->
-                </div>
-            </div>
-            <div class="bookmark-set">
-                <div class="bookmark-title">Programming</div>
-                <div class="bookmark-inner-container">
-                    <a class="bookmark" href="https://github.com">GitHub</a>
-                    <a class="bookmark" href="https://gitlab.com">GitLab</a>
-                    <a class="bookmark" href="https://www.codewars.com">Codewars</a>
-                    <a class="bookmark" href="http://e-maxx.ru">e-maxx</a>
-                </div>
-            </div>
-            <div class="bookmark-set">
-                <div class="bookmark-title">Social & Video</div>
-                <div class="bookmark-inner-container">
-                    <a class="bookmark" href="https://youtube.com/">Youtube</a>
-                    <a class="bookmark" href="https://vk.com">VK</a>
-                    <a class="bookmark" href="https://facebook.com">Facebook</a>
-                    <a class="bookmark" href="https://www.linkedin.com">LinkedIn</a>
-                </div>
-            </div>
-            <div class="bookmark-set">
-                <div class="bookmark-title">Arch Linux</div>
-                <div class="bookmark-inner-container">
-                    <a class="bookmark" href="https://www.archlinux.org/">Arch Homepage</a>
-                    <a class="bookmark" href="https://wiki.archlinux.org/">Arch Wiki</a>
-                    <a class="bookmark" href="https://bbs.archlinux.org/">Arch Forums</a>
-                    <a class="bookmark" href="https://www.archlinux.org/planet/">Planet Arch</a>
-                </div>
-            </div>
+    <form action="https://www.google.com/search" method="get" class="search">
+      <input type="text" name="q" value="" placeholder="search">
+      <button type="submit"></button>
+    </form>
+    <div class="bookmark-container">
+      <div class="bookmark-set">
+        <div class="bookmark-title">Exparte</div>
+        <div class="bookmark-inner-container">
+          <a class="bookmark" href="https://dev.azure.com/exparte/">Git</a>
+          <a class="bookmark"
+            href="https://adb-7084812004222784.4.azuredatabricks.net/?o=7084812004222784#ml/dashboard">Bricks</a>
+          <a class="bookmark" href="https://portal.azure.com">Azure</a>
+          <a class="bookmark" href="https://exparte.atlassian.net/jira/">Jira</a>
+          <a class="bookmark" href="https://exparte.atlassian.net/wiki/home">Confluence</a>
+          <!--todo add items for tempo and things like that-->
         </div>
+      </div>
+      <div class="bookmark-set">
+        <div class="bookmark-title">Common</div>
+        <div class="bookmark-inner-container">
+          <a class="bookmark" href="https://www.google.com">Google</a>
+          <a class="bookmark" href="https://translate.google.com/">Google translate</a>
+        </div>
+      </div>
     </div>
+    <div class="bookmark-container">
+      <div class="bookmark-set">
+        <div class="bookmark-title">Programming</div>
+        <div class="bookmark-inner-container">
+          <a class="bookmark" href="https://github.com">GitHub</a>
+          <a class="bookmark" href="https://gitlab.com">GitLab</a>
+          <a class="bookmark" href="https://www.codewars.com">Codewars</a>
+          <a class="bookmark" href="http://e-maxx.ru">e-maxx</a>
+        </div>
+      </div>
+      <div class="bookmark-set">
+        <div class="bookmark-title">Social & Video</div>
+        <div class="bookmark-inner-container">
+          <a class="bookmark" href="https://youtube.com/">Youtube</a>
+          <a class="bookmark" href="https://vk.com">VK</a>
+          <a class="bookmark" href="https://facebook.com">Facebook</a>
+          <a class="bookmark" href="https://www.linkedin.com">LinkedIn</a>
+        </div>
+      </div>
+      <div class="bookmark-set">
+        <div class="bookmark-title">Arch Linux</div>
+        <div class="bookmark-inner-container">
+          <a class="bookmark" href="https://www.archlinux.org/">Arch Homepage</a>
+          <a class="bookmark" href="https://wiki.archlinux.org/">Arch Wiki</a>
+          <a class="bookmark" href="https://bbs.archlinux.org/">Arch Forums</a>
+          <a class="bookmark" href="https://www.archlinux.org/planet/">Planet Arch</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        // Get current time and format
-        getTime = () => {
-            let date = new Date(),
-                min = date.getMinutes(),
-                sec = date.getSeconds(),
-                hour = date.getHours();
+  <script>
+    // Get current time and format
+    getTime = () => {
+      let date = new Date(),
+        min = date.getMinutes(),
+        sec = date.getSeconds(),
+        hour = date.getHours();
 
-            return "" + 
-                (hour < 10 ? ("0" + hour) : hour) + ":" + 
-                (min < 10 ? ("0" + min) : min) + ":" + 
-                (sec < 10 ? ("0" + sec) : sec);
-        }
+      return "" +
+        (hour < 10 ? ("0" + hour) : hour) + ":" +
+        (min < 10 ? ("0" + min) : min) + ":" +
+        (sec < 10 ? ("0" + sec) : sec);
+    }
 
-        window.onload = () => {
-            let xhr = new XMLHttpRequest();
-            // Set up the clock
-            document.getElementById("clock").innerHTML = getTime();
-            // Set clock interval to tick clock
-            setInterval( () => {
-                document.getElementById("clock").innerHTML = getTime();
-            },100);
-        }
-    </script>
+    window.onload = () => {
+      let xhr = new XMLHttpRequest();
+      // Set up the clock
+      document.getElementById("clock").innerHTML = getTime();
+      // Set clock interval to tick clock
+      setInterval(() => {
+        document.getElementById("clock").innerHTML = getTime();
+      }, 100);
+    }
+  </script>
 </body>
-</html>
 
+</html>
