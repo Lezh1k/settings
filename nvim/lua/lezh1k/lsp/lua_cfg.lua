@@ -21,4 +21,25 @@ lua_cfg.settings = {
   }, -- Lua
 }
 
+function lua_cfg.save_and_run()
+  vim.cmd([[w]])
+  vim.cmd([[belowright split]])
+  vim.cmd([[resize -10]])
+  vim.cmd([[terminal lua %]])
+end
+
+local function on_attach_set_options(_, _)
+  vim.opt.colorcolumn = "120"
+end
+
+local function on_attach_keymap(_, bufnr)
+  local opts = { buffer = bufnr, remap = false }
+  vim.keymap.set("n", "<C-R>", lua_cfg.save_and_run, opts)
+end
+
+function lua_cfg.on_attach(client, bufnr)
+  on_attach_set_options(client, bufnr)
+  on_attach_keymap(client, bufnr)
+end
+
 return lua_cfg

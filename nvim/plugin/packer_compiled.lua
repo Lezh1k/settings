@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["clangd_extensions.nvim"] = {
+    loaded = true,
+    path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/clangd_extensions.nvim",
+    url = "https://git.sr.ht/~p00f/clangd_extensions.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -148,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

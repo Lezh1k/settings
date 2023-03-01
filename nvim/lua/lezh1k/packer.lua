@@ -5,6 +5,7 @@ vim.cmd.packadd("packer.nvim")
 return require("packer").startup(function(use)
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
+
   use("nvim-lualine/lualine.nvim") -- A better statusline
 
   use {
@@ -12,6 +13,7 @@ return require("packer").startup(function(use)
     -- or                            , branch = "0.1.x",
     requires = { { "nvim-lua/plenary.nvim" } }
   }
+
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -27,6 +29,7 @@ return require("packer").startup(function(use)
       run = ":TSUpdate"
     }
   }
+
   use("NLKNguyen/papercolor-theme")
 
   use {
@@ -51,9 +54,13 @@ return require("packer").startup(function(use)
     }
   }
 
+  use { "https://git.sr.ht/~p00f/clangd_extensions.nvim" }
+
   use {
     "ray-x/lsp_signature.nvim",
   }
 
-  use ("ThePrimeagen/vim-be-good")
+  use("mfussenegger/nvim-dap")
+
+  use("ThePrimeagen/vim-be-good")
 end)
