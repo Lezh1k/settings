@@ -15,20 +15,21 @@ nt.setup({
   enable_diagnostics = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
   sort_function = nt_sort_content_asc,
-
   sources = {
     "filesystem",
     "buffers",
     -- "git_status"
   },
-
   source_selector = {
     winbar = true,
     statusline = false,
   },
-
   open_files_in_last_window = true, -- false = open files in top left window
-
   tabs_layout = "active",
-  follow_current_file = true,
+  buffers = {
+    follow_current_file = true,
+  },
+  filesystem = {
+    follow_current_file = true,
+  }
 })

@@ -8,7 +8,6 @@ local function on_attach_keymap(_, bufnr)
 end
 
 local function on_attach_set_options(_, _)
-  vim.opt.colorcolumn = "120"
 end
 
 function clangd_cfg.on_attach(client, bufnr)

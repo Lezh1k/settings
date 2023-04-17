@@ -29,7 +29,6 @@ function lua_cfg.save_and_run()
 end
 
 local function on_attach_set_options(_, _)
-  vim.opt.colorcolumn = "120"
 end
 
 local function on_attach_keymap(_, bufnr)

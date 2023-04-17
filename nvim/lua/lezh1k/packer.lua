@@ -26,8 +26,8 @@ return require("packer").startup(function(use)
 
   use {
     "nvim-treesitter/nvim-treesitter", {
-      run = ":TSUpdate"
-    }
+    run = ":TSUpdate"
+  }
   }
 
   use("NLKNguyen/papercolor-theme")
@@ -59,8 +59,7 @@ return require("packer").startup(function(use)
   use {
     "ray-x/lsp_signature.nvim",
   }
-
   use("mfussenegger/nvim-dap")
-
   use("ThePrimeagen/vim-be-good")
+  -- use("akinsho/toggleterm.nvim")
 end)
