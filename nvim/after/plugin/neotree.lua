@@ -8,7 +8,7 @@ local function nt_sort_content_asc(a, b)
   end
 end
 
-nt.setup({
+local setup_arg = {
   close_if_last_window = false,
   popup_border_style = "rounded",
   enable_git_status = true,
@@ -21,8 +21,8 @@ nt.setup({
     -- "git_status"
   },
   source_selector = {
-    winbar = true,
-    statusline = false,
+    winbar = false,
+    statusline = true,
   },
   open_files_in_last_window = true, -- false = open files in top left window
   tabs_layout = "active",
@@ -32,4 +32,9 @@ nt.setup({
   filesystem = {
     follow_current_file = true,
   }
-})
+}
+
+nt.setup(setup_arg)
+
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<leader>nt", "<CMD>Neotree toggle<CR>", opts)

@@ -3,6 +3,7 @@ local builtin = require("telescope.builtin")
 local function find_hidden_files()
   return builtin.find_files({hidden=true})
 end
+
 vim.keymap.set("n", "<leader>ff", find_hidden_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
