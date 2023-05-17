@@ -17,4 +17,4 @@ Use `:Mason` command. See [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvi
 
 - [ ] debug in nvim (dap or termdebug)
 
-- [ ] ability to config workspace for each project independently 
+- [x] ability to config workspace for each project independently 

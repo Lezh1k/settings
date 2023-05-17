@@ -9,9 +9,16 @@ return require("packer").startup(function(use)
   use("nvim-lualine/lualine.nvim") -- A better statusline
 
   use {
-    "nvim-telescope/telescope.nvim", tag = "0.1.0",
-    -- or                            , branch = "0.1.x",
-    requires = { { "nvim-lua/plenary.nvim" } }
+    "nvim-telescope/telescope.nvim", branch = "0.1.x",
+    -- or                            , tag = "0.1.1",
+    requires = { {
+      "nvim-lua/plenary.nvim",
+    } }
+  }
+
+  use {
+    "mg979/vim-visual-multi",
+    branch = "master",
   }
 
   use {
@@ -25,9 +32,10 @@ return require("packer").startup(function(use)
   }
 
   use {
-    "nvim-treesitter/nvim-treesitter", {
-    run = ":TSUpdate"
-  }
+    "nvim-treesitter/nvim-treesitter",
+    {
+      run = ":TSUpdate",
+    }
   }
 
   use("NLKNguyen/papercolor-theme")
@@ -61,5 +69,6 @@ return require("packer").startup(function(use)
   }
   use("mfussenegger/nvim-dap")
   use("ThePrimeagen/vim-be-good")
-  -- use("akinsho/toggleterm.nvim")
+  use("akinsho/toggleterm.nvim")
+  use("terrortylor/nvim-comment")
 end)

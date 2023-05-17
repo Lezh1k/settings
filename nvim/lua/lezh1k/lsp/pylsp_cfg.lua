@@ -16,6 +16,7 @@ function pylsp_cfg.save_and_run()
   vim.cmd([[belowright split]])
   vim.cmd([[resize -10]])
   vim.cmd([[terminal python %]])
+  -- vim.cmd([[TermExec cmd="python %"]])
 end
 
 local function on_attach_set_options(_, _)
