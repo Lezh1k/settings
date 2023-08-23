@@ -28,6 +28,7 @@ vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
 -- Naviagate buffers
 vim.keymap.set("n", "<S-l>", "<CMD>bnext<CR>", opts)
 vim.keymap.set("n", "<S-h>", "<CMD>bprevious<CR>", opts)
+vim.keymap.set("n", "<leader>bd", "<CMD>bd<CR>", opts)
 
 -- Move text up and down
 vim.keymap.set("n", "<C-S-j>", "<CMD>m .+1<CR>==", opts)
@@ -43,10 +44,3 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
--- Debugging (requires dap)
-vim.keymap.set("n", "<F5>", "<CMD>lua require('dap').continue()<CR>", opts)
-vim.keymap.set("n", "<F10>", "<CMD>lua require('dap').step_over()<CR>", opts)
-vim.keymap.set("n", "<F11>", "<CMD>lua require('dap').step_into()<CR>", opts)
-vim.keymap.set("n", "<F12>", "<CMD>lua require('dap').step_out()<CR>", opts)
-vim.keymap.set("n", "<F9>", "<CMD>lua require('dap').toggle_breakpoint()<CR>", opts)

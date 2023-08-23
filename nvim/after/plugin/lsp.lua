@@ -8,6 +8,7 @@ vim.keymap.set("n", "<leader>fm", "<CMD>LspZeroFormat<CR>", opts)
 local cmp = require("cmp")
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
+  ["<CR>"] = cmp.mapping.confirm({ select = false }),
 })
 
 lsp.setup_nvim_cmp({

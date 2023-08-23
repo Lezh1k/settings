@@ -13,6 +13,8 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 -- -- symbols
 vim.keymap.set("n", "<leader>sl", builtin.lsp_document_symbols, {})
 vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
+vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
+vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, {})
 
 
 --

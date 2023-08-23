@@ -42,6 +42,7 @@ return require("packer").startup(function(use)
 
   use {
     "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
     requires = {
       -- LSP Support
       { "neovim/nvim-lspconfig" },
@@ -67,8 +68,18 @@ return require("packer").startup(function(use)
   use {
     "ray-x/lsp_signature.nvim",
   }
-  use("mfussenegger/nvim-dap")
-  use("ThePrimeagen/vim-be-good")
-  use("akinsho/toggleterm.nvim")
+
+  use {
+    "mfussenegger/nvim-dap",
+
+    requires = {
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "nvim-telescope/telescope-dap.nvim",
+    }
+  }
+  use 'mfussenegger/nvim-dap-python'
+
   use("terrortylor/nvim-comment")
+  use("akinsho/toggleterm.nvim")
 end)
