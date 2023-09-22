@@ -3,7 +3,7 @@ local clangd_cfg = {}
 -- settings for clangd plugin
 local function on_attach_keymap(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
-  vim.keymap.set("n", "<F4>", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
+  vim.keymap.set("n", "<leader>gh", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
   vim.keymap.set("i", "<A-/>", "//////////////////////////////////////////////////////////////")
 end
 
