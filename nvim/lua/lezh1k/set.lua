@@ -41,6 +41,7 @@ local function set_color_col()
     ["c"] = "120",
     ["cpp"] = "120",
     ["h"] = "120",
+    ["go"] = "120",
   }
   local bufnr = vim.api.nvim_get_current_buf()
   local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")

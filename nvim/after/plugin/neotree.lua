@@ -27,10 +27,14 @@ local setup_arg = {
   open_files_in_last_window = true, -- false = open files in top left window
   tabs_layout = "active",
   buffers = {
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true
+    },
   },
   filesystem = {
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true
+    },
   }
 }
 

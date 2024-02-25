@@ -1,18 +1,40 @@
-local lsp = require("lsp-zero")
-lsp.preset("recommended")
+local lsp_zero = require("lsp-zero")
 
--- LSP
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>fm", "<CMD>LspZeroFormat<CR>", opts)
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({
+    buffer = bufnr,
+    exclude = { "gd", "gi", "gr" },
+  })
+end)
 
-local cmp = require("cmp")
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ["<C-Space>"] = cmp.mapping.complete(),
-  ["<CR>"] = cmp.mapping.confirm({ select = false }),
+--- if you want to know more about lsp-zero and mason.nvim
+--- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {},
+  handlers = {
+    lsp_zero.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
 })
 
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+local cmp = require('cmp')
+local cmp_format = lsp_zero.cmp_format()
+
+cmp.setup({
+  formatting = cmp_format,
+  mapping = cmp.mapping.preset.insert({
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    -- scroll up and down the documentation window
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+  }),
 })
 
 -- LSP signature
@@ -28,7 +50,7 @@ end
 -- PER LANGUAGE SETTINGS
 -- lua configuration
 local lsp_cfg = require("lezh1k.lsp.lua_cfg")
-lsp.configure("lua_ls", {
+lsp_zero.configure("lua_ls", {
   settings = lsp_cfg.settings,
   on_attach = function(client, bufnr)
     lsp_cfg.on_attach(client, bufnr)
@@ -39,7 +61,7 @@ lsp.configure("lua_ls", {
 --  python configuration
 --  python-lsp-server
 local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
-lsp.configure("pylsp", {
+lsp_zero.configure("pylsp", {
   settings = pylsp_cfg.settings,
   on_attach = function(client, bufnr)
     pylsp_cfg.on_attach(client, bufnr)
@@ -49,11 +71,23 @@ lsp.configure("pylsp", {
 
 -- clangd configuration
 local clangd_cfg = require("lezh1k.lsp.clangd_cfg")
-lsp.configure("clangd", {
+lsp_zero.configure("clangd", {
   on_attach = function(client, bufnr)
     clangd_cfg.on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
 })
 
-lsp.setup()
+-- golang configuration
+local golang_cfg = require("lezh1k.lsp.golang_cfg")
+lsp_zero.configure("gopls", {
+  settings = golang_cfg.settings,
+  on_attach = function(client, bufnr)
+    -- golang_cfg.on_attach(client, bufnr)
+    on_attach_lsp_signature(client, bufnr)
+  end,
+  cmd = golang_cfg.cmd,
+  filetypes = golang_cfg.filetypes,
+})
+
+lsp_zero.setup()
