@@ -1,27 +1,31 @@
 local lsp_zero = require("lsp-zero")
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
   lsp_zero.default_keymaps({
     buffer = bufnr,
+    -- definitions for these are in telescope.lua
     exclude = { "gd", "gi", "gr" },
   })
+  local opts = { buffer = bufnr }
+
+  vim.keymap.set({ "n", "x" }, "<leader>fm", function()
+    vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
+  end, opts)
 end)
 
---- if you want to know more about lsp-zero and mason.nvim
---- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {},
-  handlers = {
-    lsp_zero.default_setup,
-    lua_ls = function()
-      local lua_opts = lsp_zero.nvim_lua_ls()
-      require('lspconfig').lua_ls.setup(lua_opts)
-    end,
-  }
-})
+-- TODO MAYBE MOVE ALL LANGUAGE SPECIFIC CONFIGURATIONS HERE
+-- require('mason-lspconfig').setup({
+--   ensure_installed = {},
+--   handlers = {
+--     lsp_zero.default_setup,
+--     lua_ls = function()
+--       print("MASON-LSPCONFIG LUA")
+--       local lua_opts = lsp_zero.nvim_lua_ls()
+--       require('lspconfig').lua_ls.setup(lua_opts)
+--     end,
+--   }
+-- })
 
 local cmp = require('cmp')
 local cmp_format = lsp_zero.cmp_format()
@@ -49,11 +53,11 @@ end
 
 -- PER LANGUAGE SETTINGS
 -- lua configuration
-local lsp_cfg = require("lezh1k.lsp.lua_cfg")
+local lua_cfg = require("lezh1k.lsp.lua_cfg")
 lsp_zero.configure("lua_ls", {
-  settings = lsp_cfg.settings,
+  settings = lua_cfg.settings,
   on_attach = function(client, bufnr)
-    lsp_cfg.on_attach(client, bufnr)
+    lua_cfg.on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
 })
