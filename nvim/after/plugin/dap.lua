@@ -27,7 +27,10 @@ local function configure_python_dap()
   -- vim.keymap.set("n", "<leader>tm", pd.test_method, opts)
   -- vim.keymap.set("n", "<leader>tc", pd.test_class, opts)
   -- vim.keymap.set("n", "<leader>ds", pd.debug_selection, opts)
-  pd.setup("python", {})
+
+  pd.setup("python", {
+    include_configs = true,
+  })
 end
 
 local function configure_debuggers()

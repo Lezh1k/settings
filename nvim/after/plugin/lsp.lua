@@ -15,16 +15,19 @@ end)
 
 require('mason').setup({})
 -- TODO MAYBE MOVE ALL LANGUAGE SPECIFIC CONFIGURATIONS HERE
--- require('mason-lspconfig').setup({
---   ensure_installed = {},
---   handlers = {
---     lsp_zero.default_setup,
---     lua_ls = function()
---       local lua_opts = lsp_zero.nvim_lua_ls()
---       require('lspconfig').lua_ls.setup(lua_opts)
---     end,
---   }
--- })
+require('mason-lspconfig').setup({
+  ensure_installed = {},
+  handlers = {
+    -- lsp_zero.default_setup,
+    -- lua_ls = function()
+    --   local lua_opts = lsp_zero.nvim_lua_ls()
+    --   require('lspconfig').lua_ls.setup(lua_opts)
+    -- end,
+    tsserver = function()
+      require("lspconfig").tsserver.setup({})
+    end,
+  }
+})
 
 local cmp = require('cmp')
 local cmp_format = lsp_zero.cmp_format()

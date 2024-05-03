@@ -72,6 +72,7 @@ return require("packer").startup(function(use)
 
     requires = {
       "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio",
       "rcarriga/nvim-dap-ui",
       "nvim-telescope/telescope-dap.nvim",
     }
