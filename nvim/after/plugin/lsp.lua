@@ -13,18 +13,33 @@ lsp_zero.on_attach(function(client, bufnr)
   end, opts)
 end)
 
+-- LSP signature
+local function on_attach_lsp_signature(_, bufnr)
+  local sign = require("lsp_signature")
+  sign.setup()
+  sign.on_attach({
+    bind = true,
+    hint_prefix = "->",
+  }, bufnr)
+end
+
 require('mason').setup({})
 -- TODO MAYBE MOVE ALL LANGUAGE SPECIFIC CONFIGURATIONS HERE
 require('mason-lspconfig').setup({
   ensure_installed = {},
   handlers = {
-    -- lsp_zero.default_setup,
-    -- lua_ls = function()
-    --   local lua_opts = lsp_zero.nvim_lua_ls()
-    --   require('lspconfig').lua_ls.setup(lua_opts)
-    -- end,
     tsserver = function()
       require("lspconfig").tsserver.setup({})
+    end,
+    pylsp = function()
+      local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
+      require("lspconfig").pylsp.setup({
+        settings = pylsp_cfg.settings,
+        on_attach = function(client, bufnr)
+          pylsp_cfg.on_attach(client, bufnr)
+          on_attach_lsp_signature(client, bufnr)
+        end,
+      })
     end,
   }
 })
@@ -43,16 +58,6 @@ cmp.setup({
   }),
 })
 
--- LSP signature
-local function on_attach_lsp_signature(_, bufnr)
-  local sign = require("lsp_signature")
-  sign.setup()
-  sign.on_attach({
-    bind = true,
-    hint_prefix = "->",
-  }, bufnr)
-end
-
 -- PER LANGUAGE SETTINGS
 -- lua configuration
 local lua_cfg = require("lezh1k.lsp.lua_cfg")
@@ -60,17 +65,6 @@ lsp_zero.configure("lua_ls", {
   settings = lua_cfg.settings,
   on_attach = function(client, bufnr)
     lua_cfg.on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
-  end,
-})
-
---  python configuration
---  python-lsp-server
-local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
-lsp_zero.configure("pylsp", {
-  settings = pylsp_cfg.settings,
-  on_attach = function(client, bufnr)
-    pylsp_cfg.on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
 })

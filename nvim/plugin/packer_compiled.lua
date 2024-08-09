@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
+local package_path_str = "/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1720049189/share/lua/5.1/?.lua;/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1720049189/share/lua/5.1/?/init.lua;/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1720049189/lib/luarocks/rocks-5.1/?.lua;/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1720049189/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/lezh1k/.cache/nvim/packer_hererocks/2.1.1720049189/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -209,6 +209,11 @@ _G.packer_plugins = {
     path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/papercolor-theme",
     url = "https://github.com/NLKNguyen/papercolor-theme"
   },
+  ["papercolor-theme-slim"] = {
+    loaded = true,
+    path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/papercolor-theme-slim",
+    url = "https://github.com/pappasam/papercolor-theme-slim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -229,10 +234,10 @@ _G.packer_plugins = {
     path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
-  ["vim-visual-multi"] = {
+  vim = {
     loaded = true,
-    path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
-    url = "https://github.com/mg979/vim-visual-multi"
+    path = "/home/lezh1k/.local/share/nvim/site/pack/packer/start/vim",
+    url = "https://github.com/dracula/vim"
   }
 }
 

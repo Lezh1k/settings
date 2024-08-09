@@ -15,11 +15,6 @@ return require("packer").startup(function(use)
   }
 
   use {
-    "mg979/vim-visual-multi",
-    branch = "master",
-  }
-
-  use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     requires = {
@@ -32,11 +27,13 @@ return require("packer").startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     {
-      run = ":TSUpdate",
+      run = ":TSUpdateSync",
     }
   }
 
   use("NLKNguyen/papercolor-theme")
+  use("pappasam/papercolor-theme-slim")
+  use("dracula/vim")
 
   use {
     "VonHeikemen/lsp-zero.nvim",
@@ -78,7 +75,6 @@ return require("packer").startup(function(use)
     }
   }
   use 'mfussenegger/nvim-dap-python'
-
   use("terrortylor/nvim-comment")
   use("akinsho/toggleterm.nvim")
 end)

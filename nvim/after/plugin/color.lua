@@ -1,5 +1,6 @@
 -- vim.cmd[[set background=light]]
-vim.cmd[[colorscheme PaperColor]]
+-- vim.cmd[[colorscheme PaperColor]]
+vim.cmd[[colorscheme PaperColorSlim]]
 
 -------------------------------------------------
 -- COLORSCHEMES

@@ -11,12 +11,30 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
-vim.opt.swapfile = false
-vim.opt.backup = false
+vim.opt.wrap = true
+vim.opt.swapfile = true
+vim.opt.backup = true
 vim.opt.undofile = false
 
-vim.opt.hlsearch = false
+-- vim.opt.hlsearch = false
+-- Create an augroup named 'vimrc_incsearch_highlight'
+local augroup = vim.api.nvim_create_augroup('vimrc_incsearch_highlight', { clear = true })
+-- Add autocmds to the augroup
+vim.api.nvim_create_autocmd('CmdlineEnter', {
+  group = augroup,
+  pattern = { '/', '\\?' },
+  callback = function()
+    vim.opt.hlsearch = true
+  end
+})
+
+vim.api.nvim_create_autocmd('CmdlineLeave', {
+  group = augroup,
+  pattern = { '/', '\\?' },
+  callback = function()
+    vim.opt.hlsearch = false
+  end
+})
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
