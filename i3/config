@@ -221,8 +221,7 @@ assign [class="qutebrowser"] $ws2
 
 exec /usr/bin/qmmp
 exec /usr/bin/telegram-desktop
-# exec /usr/bin/chromium
-exec /usr/bin/qutebrowser
+exec /usr/bin/chromium
 # exec /usr/bin/firefox
 # exec /usr/bin/slack
 exec /usr/bin/teams
