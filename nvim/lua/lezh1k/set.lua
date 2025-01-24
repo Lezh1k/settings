@@ -14,6 +14,7 @@ vim.opt.smartindent = true
 vim.opt.wrap = true
 vim.opt.swapfile = false
 vim.opt.backup = true
+vim.opt.backupdir = '/home/lezh1k/.local/share/nvim/backup'
 vim.opt.undofile = false
 
 -- vim.opt.hlsearch = false

@@ -7,16 +7,16 @@ ll.setup {
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
-      statusline = {'neo-tree'},
+      statusline = { 'neo-tree' },
       winbar = {},
     },
     ignore_focus = {},
     always_divide_middle = true,
     globalstatus = false,
     refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
     }
   },
 

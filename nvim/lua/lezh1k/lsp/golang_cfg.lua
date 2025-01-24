@@ -4,6 +4,7 @@ golang_cfg.settings = {
   gopls = {
     completeUnimported = true,
     usePlaceholders = true,
+    gofumpt = true,
     -- analyzes = {
     --   unusedparams = true,
     -- },

@@ -26,10 +26,11 @@ end
 require('mason').setup({})
 -- TODO MAYBE MOVE ALL LANGUAGE SPECIFIC CONFIGURATIONS HERE
 require('mason-lspconfig').setup({
+  automatic_installation=true,
   ensure_installed = {},
   handlers = {
-    tsserver = function()
-      require("lspconfig").tsserver.setup({})
+    ts_ls = function()
+      require("lspconfig").ts_ls.setup({})
     end,
     pylsp = function()
       local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
