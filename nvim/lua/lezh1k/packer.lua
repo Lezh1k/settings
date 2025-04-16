@@ -67,17 +67,6 @@ return require("packer").startup(function(use)
     "ray-x/lsp_signature.nvim",
   }
 
-  use {
-    "mfussenegger/nvim-dap",
-
-    requires = {
-      "theHamsta/nvim-dap-virtual-text",
-      "nvim-neotest/nvim-nio",
-      "rcarriga/nvim-dap-ui",
-      "nvim-telescope/telescope-dap.nvim",
-    }
-  }
-  use 'mfussenegger/nvim-dap-python'
   use("terrortylor/nvim-comment")
   use("akinsho/toggleterm.nvim")
 end)

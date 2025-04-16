@@ -63,7 +63,7 @@ local function set_color_col()
     ["go"] = "120",
   }
   local bufnr = vim.api.nvim_get_current_buf()
-  local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+  local ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
   local cc = dct_ft_width[ft]
   if cc == nil then cc = "80" end
   vim.opt.colorcolumn = cc
