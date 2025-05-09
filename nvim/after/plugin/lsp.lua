@@ -1,19 +1,33 @@
-local lsp_zero = require("lsp-zero")
+local lspconfig = require("lspconfig")
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
 
-lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps({
-    buffer = bufnr,
-    -- definitions for these are in telescope.lua
-    exclude = { "gd", "gi", "gr" },
-  })
+-- Common on_attach function
+local function on_attach(_, bufnr)
   local opts = { buffer = bufnr }
+  -- These keymappings are defined in telescope.lua
+  -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+  -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+  -- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+  -- vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+  -- !!!!
 
-  vim.keymap.set({ "n", "x" }, "<leader>fm", function()
-    vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
-  end, opts)
-end)
+  -- default lsp keybindings listed here are deleted in common_remaps.lua
+  -- vim.keymap.del('n', 'gri', opts)  -- vim.lsp.buf.implementation()
+  -- vim.keymap.del('n', 'grr', opts)  -- vim.lsp.buf.references()
+  -- vim.keymap.del('n', 'gra', opts)  -- vim.lsp.buf.code_action()
+  -- vim.keymap.del('n', 'grn', opts)  -- vim.lsp.buf.rename()
 
--- LSP signature
+  vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+  vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+  vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+  vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+  vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  vim.keymap.set({ 'n', 'x' }, '<leader>fm', '<cmd>lua vim.lsp.buf.format({ async = false })<cr>', opts)
+  -- Optional: Add more keymaps here if needed
+end
+
+-- LSP Signature
 local function on_attach_lsp_signature(_, bufnr)
   local sign = require("lsp_signature")
   sign.setup()
@@ -23,72 +37,85 @@ local function on_attach_lsp_signature(_, bufnr)
   }, bufnr)
 end
 
-require('mason').setup({})
--- TODO MAYBE MOVE ALL LANGUAGE SPECIFIC CONFIGURATIONS HERE
-require('mason-lspconfig').setup({
-  automatic_installation=true,
+-- Setup Mason
+mason.setup()
+
+-- Mason-LSPConfig integration
+mason_lspconfig.setup({
+  automatic_enable = true,
+  automatic_installation = true,
   ensure_installed = {},
-  handlers = {
-    ts_ls = function()
-      require("lspconfig").ts_ls.setup({})
-    end,
-    pylsp = function()
-      local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
-      require("lspconfig").pylsp.setup({
-        settings = pylsp_cfg.settings,
-        on_attach = function(client, bufnr)
-          pylsp_cfg.on_attach(client, bufnr)
-          on_attach_lsp_signature(client, bufnr)
-        end,
-      })
-    end,
-  }
 })
 
-local cmp = require('cmp')
-local cmp_format = lsp_zero.cmp_format()
-
+-- Setup global cmp (Autocompletion)
+local cmp = require("cmp")
 cmp.setup({
-  formatting = cmp_format,
+  -- formatting = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 }),
   mapping = cmp.mapping.preset.insert({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    -- scroll up and down the documentation window
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
   }),
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "path" },
+    { name = "luasnip" },
+  },
 })
 
--- PER LANGUAGE SETTINGS
--- lua configuration
+-- Language-specific configurations
+
+-- Lua
 local lua_cfg = require("lezh1k.lsp.lua_cfg")
-lsp_zero.configure("lua_ls", {
+lspconfig.lua_ls.setup({
   settings = lua_cfg.settings,
   on_attach = function(client, bufnr)
     lua_cfg.on_attach(client, bufnr)
+    on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
 })
 
--- clangd configuration
+-- Clangd
 local clangd_cfg = require("lezh1k.lsp.clangd_cfg")
-lsp_zero.configure("clangd", {
+lspconfig.clangd.setup({
   on_attach = function(client, bufnr)
     clangd_cfg.on_attach(client, bufnr)
+    on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
 })
 
--- golang configuration
+-- Go
 local golang_cfg = require("lezh1k.lsp.golang_cfg")
-lsp_zero.configure("gopls", {
+lspconfig.gopls.setup({
   settings = golang_cfg.settings,
-  on_attach = function(client, bufnr)
-    -- golang_cfg.on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
-  end,
   cmd = golang_cfg.cmd,
   filetypes = golang_cfg.filetypes,
+  on_attach = function(client, bufnr)
+    -- golang_cfg.on_attach(client, bufnr) -- uncomment if needed
+    on_attach(client, bufnr)
+    on_attach_lsp_signature(client, bufnr)
+  end,
 })
 
-lsp_zero.setup()
+-- Python
+local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
+lspconfig.pylsp.setup({
+  settings = pylsp_cfg.settings,
+  on_attach = function(client, bufnr)
+    pylsp_cfg.on_attach(client, bufnr)
+    on_attach(client, bufnr)
+    on_attach_lsp_signature(client, bufnr)
+  end,
+})
+
+-- TypeScript
+lspconfig.ts_ls.setup({
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    on_attach_lsp_signature(client, bufnr)
+  end,
+})

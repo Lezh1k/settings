@@ -9,6 +9,7 @@ local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- fast goto navigation screen
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -44,3 +45,22 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- LSP (we want to delete old mappings because we have our own)
+vim.keymap.del('n', 'gri')  -- vim.lsp.buf.implementation()
+vim.keymap.del('n', 'grr')  -- vim.lsp.buf.references()
+vim.keymap.del('n', 'gra')  -- vim.lsp.buf.code_action()
+vim.keymap.del('n', 'grn')  -- vim.lsp.buf.rename()
+
+-- Builtin commenter
+do
+    local operator_rhs = function()
+      return require('vim._comment').operator()
+    end
+    vim.keymap.set({ 'n', 'x' }, '<leader>c', operator_rhs, { expr = true, desc = 'Toggle comment' })
+
+    local line_rhs = function()
+      return require('vim._comment').operator() .. '_'
+    end
+    vim.keymap.set('n', '<leader>cl', line_rhs, { expr = true, desc = 'Toggle comment line' })
+end

@@ -19,6 +19,9 @@ vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
 vim.keymap.set("n", "gi", builtin.lsp_implementations, {})
 vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, {})
 vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
+vim.keymap.set("n", "go", builtin.lsp_type_definitions, {})
+vim.keymap.set("n", "<leader>go", builtin.lsp_type_definitions, {})
+
 
 
 --
