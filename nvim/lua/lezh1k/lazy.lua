@@ -29,7 +29,8 @@ require("lazy").setup({
 
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    tag = '0.1.8',
+    -- branch = "0.1.x",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
 
@@ -45,7 +46,7 @@ require("lazy").setup({
 
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdateSync",
+    build = ":TSUpdate",
   },
 
   { "NLKNguyen/papercolor-theme" },

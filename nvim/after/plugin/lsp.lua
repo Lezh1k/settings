@@ -4,8 +4,8 @@ local mason_lspconfig = require("mason-lspconfig")
 
 -- Common on_attach function
 local function on_attach(_, bufnr)
-  local opts = { buffer = bufnr }
-  -- These keymappings are defined in telescope.lua
+  local opts = { buffer = bufnr, noremap = true, silent = true }
+  -- These keymappings are defined in telescope.lua and handled by telescope
   -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
   -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
   -- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
@@ -39,13 +39,6 @@ end
 
 -- Setup Mason
 mason.setup()
-
--- Mason-LSPConfig integration
-mason_lspconfig.setup({
-  automatic_enable = true,
-  automatic_installation = true,
-  ensure_installed = {},
-})
 
 -- Setup global cmp (Autocompletion)
 local cmp = require("cmp")

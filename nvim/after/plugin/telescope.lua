@@ -22,8 +22,6 @@ vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 vim.keymap.set("n", "go", builtin.lsp_type_definitions, {})
 vim.keymap.set("n", "<leader>go", builtin.lsp_type_definitions, {})
 
-
-
 --
 local previewers = require('telescope.previewers')
 
