@@ -47,22 +47,29 @@ vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- LSP (we want to delete old mappings because we have our own)
-vim.keymap.del('n', 'gri', opts) -- vim.lsp.buf.implementation()
-vim.keymap.del('n', 'grr', opts) -- vim.lsp.buf.references()
-vim.keymap.del('n', 'gra', opts) -- vim.lsp.buf.code_action()
-vim.keymap.del('n', 'grn', opts) -- vim.lsp.buf.rename()
+-- gri = vim.lsp.buf.implementation()
+-- grr = vim.lsp.buf.references()
+-- gra = vim.lsp.buf.code_action()
+-- grn = vim.lsp.buf.rename()
+local keys = { "gri", "grr", "gra", "grn" }
+for _, key in ipairs(keys) do
+  pcall(vim.keymap.del, "n", key, opts)
+end
+
+-- Floating diagnostic
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 
 -- Builtin commenter
 do
-  vim.keymap.del('n', 'gcc', opts)
-  vim.keymap.del({ 'n', 'x' }, 'gc', opts)
+  pcall(vim.keymap.del, "n", "gcc", opts)
+  pcall(vim.keymap.del, { "n", "x" }, "gc", opts)
   local operator_rhs = function()
-    return require('vim._comment').operator()
+    return require("vim._comment").operator()
   end
-  vim.keymap.set({ 'n', 'x' }, '<leader>c', operator_rhs, { expr = true, desc = 'Toggle comment' })
+  vim.keymap.set({ "n", "x" }, "<leader>c", operator_rhs, { expr = true, desc = "Toggle comment" })
 
   local line_rhs = function()
-    return require('vim._comment').operator() .. '_'
+    return require("vim._comment").operator() .. "_"
   end
-  vim.keymap.set('n', '<leader>cl', line_rhs, { expr = true, desc = 'Toggle comment line' })
+  vim.keymap.set("n", "<leader>cl", line_rhs, { expr = true, desc = "Toggle comment line" })
 end
