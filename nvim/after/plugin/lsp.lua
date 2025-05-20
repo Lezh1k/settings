@@ -81,6 +81,14 @@ lspconfig.clangd.setup({
   end,
 })
 
+-- ASM
+-- lspconfig.asm_lsp.setup({
+--   on_attach = function(client, bufnr)
+--     on_attach(client, bufnr)
+--     on_attach_lsp_signature(client, bufnr)
+--   end,
+-- })
+
 -- Go
 local golang_cfg = require("lezh1k.lsp.golang_cfg")
 lspconfig.gopls.setup({
