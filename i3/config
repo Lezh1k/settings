@@ -220,8 +220,8 @@ assign [class="Chromium"] $ws2
 assign [class="qutebrowser"] $ws2
 
 exec /usr/bin/qmmp
-exec /usr/bin/telegram-desktop
+exec /usr/bin/Telegram
 exec /usr/bin/chromium
 # exec /usr/bin/firefox
 # exec /usr/bin/slack
-exec /usr/bin/teams
+# exec /usr/bin/teams
