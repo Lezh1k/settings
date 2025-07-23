@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
+-- local mason_lspconfig = require("mason-lspconfig")
 
 -- Common on_attach function
 local function on_attach(_, bufnr)
