@@ -8,7 +8,7 @@
 while :
 do
 # Output current layout:
-xkb-switch -p | awk '{print toupper($0); fflush("/dev/stdout")}' || sleep 1
+  xkb-switch -p | awk '{print toupper($0); fflush("/dev/stdout")}' || sleep 1
 # Wait for layout change:
-    xkb-switch -w
+  xkb-switch -w
 done

@@ -224,4 +224,4 @@ exec /usr/bin/Telegram
 exec /usr/bin/chromium
 # exec /usr/bin/firefox
 # exec /usr/bin/slack
-# exec /usr/bin/teams
+exec /usr/bin/teams
