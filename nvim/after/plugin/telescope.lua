@@ -39,5 +39,7 @@ end
 require('telescope').setup {
   defaults = {
     buffer_previewer_maker = new_maker,
+    layout_strategy = 'flex',
+    path_display = "shorten",
   }
 }

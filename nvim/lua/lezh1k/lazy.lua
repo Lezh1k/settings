@@ -41,12 +41,13 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
-    }
+    },
+    lazy = false,
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = 'main',
+    branch = 'master',
     lazy = false,
     build = ":TSUpdate"
   },
