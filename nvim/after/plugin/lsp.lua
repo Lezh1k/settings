@@ -1,7 +1,3 @@
-local lspconfig = require("lspconfig")
-local mason = require("mason")
--- local mason_lspconfig = require("mason-lspconfig")
-
 -- Common on_attach function
 local function on_attach(_, bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true }
@@ -37,74 +33,51 @@ local function on_attach_lsp_signature(_, bufnr)
   }, bufnr)
 end
 
--- Setup Mason
-mason.setup()
-
--- Setup global cmp (Autocompletion)
-local cmp = require("cmp")
-cmp.setup({
-  -- formatting = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 }),
-  mapping = cmp.mapping.preset.insert({
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-  }),
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "path" },
-    { name = "luasnip" },
-  },
-})
-
 -- Language-specific configurations
 
 -- Lua
 local lua_cfg = require("lezh1k.lsp.lua_cfg")
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
   settings = lua_cfg.settings,
   on_attach = function(client, bufnr)
     lua_cfg.on_attach(client, bufnr)
     on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
+  cmd = lua_cfg.cmd,
+  root_markers = lua_cfg.root_markers,
+  filetypes = lua_cfg.filetypes,
 })
 
 -- Clangd
 local clangd_cfg = require("lezh1k.lsp.clangd_cfg")
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)
     clangd_cfg.on_attach(client, bufnr)
     on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
+  cmd = clangd_cfg.cmd,
+  root_markers = clangd_cfg.root_markers,
+  filetypes = clangd_cfg.filetypes,
 })
-
--- ASM
--- lspconfig.asm_lsp.setup({
---   on_attach = function(client, bufnr)
---     on_attach(client, bufnr)
---     on_attach_lsp_signature(client, bufnr)
---   end,
--- })
 
 -- Go
 local golang_cfg = require("lezh1k.lsp.golang_cfg")
-lspconfig.gopls.setup({
+vim.lsp.config("gopls", {
   settings = golang_cfg.settings,
-  cmd = golang_cfg.cmd,
-  filetypes = golang_cfg.filetypes,
   on_attach = function(client, bufnr)
     -- golang_cfg.on_attach(client, bufnr) -- uncomment if needed
     on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
   end,
+  cmd = golang_cfg.cmd,
+  filetypes = golang_cfg.filetypes,
 })
 
 -- Python
 local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
-lspconfig.pylsp.setup({
+vim.lsp.config("pylsp", {
   settings = pylsp_cfg.settings,
   on_attach = function(client, bufnr)
     pylsp_cfg.on_attach(client, bufnr)
@@ -114,9 +87,87 @@ lspconfig.pylsp.setup({
 })
 
 -- TypeScript
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
+  end,
+})
+
+-- Rust
+vim.lsp.config("rust-analyzer", {
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    on_attach_lsp_signature(client, bufnr)
+  end,
+  cmd = { "rust-analyzer" },
+  filetypes = { "rs" },
+})
+
+local ft_servers = {
+  lua = { "lua_ls" },
+
+  c = { "clangd" },
+  cpp = { "clangd" },
+  objc = { "clangd" },
+  objcpp = { "clangd" },
+  cuda = { "clangd" },
+
+  go = { "gopls" },
+
+  python = { "pylsp" },
+
+  javascript = { "ts_ls" },
+  javascriptreact = { "ts_ls" },
+  typescript = { "ts_ls" },
+  typescriptreact = { "ts_ls" },
+
+  rust = { "rust-analyzer" },
+}
+
+-- 3) start/attach on demand when a buffer with that filetype opens
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = vim.tbl_keys(ft_servers),
+  callback = function(arg)
+    local servers = ft_servers[arg.match]
+    if not servers then return end
+    for _, name in ipairs(servers) do
+      -- avoid duplicates for this buffer
+      local already = vim.lsp.get_clients({ name = name, bufnr = arg.buf })
+      if #already == 0 then
+        -- registers/starts the server for this buffer on demand
+        vim.lsp.enable(name)
+      end
+    end
+  end,
+})
+
+-- Make the menu appear but don't insert or select automatically
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+-- vim.opt.shortmess:append("c") -- quieter completion messages
+
+-- Built-in LSP completion on-demand
+local aug = vim.api.nvim_create_augroup("LspEnableNativeCompletion", { clear = true })
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = aug,
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then return end
+
+    -- Enable native LSP completion if the server supports it
+    if client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+
+    -- Optional: manual trigger with <C-Space> (buffer-local)
+    local opts = { buffer = ev.buf, noremap = true, silent = true, expr = true }
+    vim.keymap.set("i", "<C-Space>", function()
+      if vim.lsp.completion and vim.lsp.completion.trigger then
+        vim.lsp.completion.trigger()
+        return ""
+      else
+        return "<C-x><C-o>" -- fallback: built-in omnifunc completion
+      end
+    end, opts)
   end,
 })

@@ -61,16 +61,12 @@ require("lazy").setup({
   { "ray-x/lsp_signature.nvim" },
 
   {
-    "mason-org/mason.nvim",
-    "neovim/nvim-lspconfig",
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",  -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
+    },
   },
-
-  -- nvim-cmp
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'hrsh7th/cmp-path' },
-  { 'hrsh7th/cmp-cmdline' },
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-vsnip' },
-  { 'hrsh7th/vim-vsnip' },
 })

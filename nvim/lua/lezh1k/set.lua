@@ -51,6 +51,7 @@ vim.opt.title = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.ex = true
+vim.opt.colorcolumn = "120"
 -- colorcolumn
 
 local function set_color_col()
@@ -74,4 +75,11 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.schedule(set_color_col)
   end,
+})
+
+vim.diagnostic.config({
+  virtual_lines = {
+    -- Only show virtual line diagnostics for the current cursor line
+    current_line = true,
+  },
 })

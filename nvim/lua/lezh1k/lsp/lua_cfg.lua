@@ -21,6 +21,10 @@ lua_cfg.settings = {
   }, -- Lua
 }
 
+lua_cfg.cmd = { "lua-language-server" }
+lua_cfg.root_markers = { ".luarc.json" }
+lua_cfg.filetypes = { "lua" }
+
 function lua_cfg.save_and_run()
   vim.cmd([[w]])
   vim.cmd([[belowright split]])

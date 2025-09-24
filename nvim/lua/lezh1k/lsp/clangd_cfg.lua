@@ -15,4 +15,8 @@ function clangd_cfg.on_attach(client, bufnr)
   on_attach_keymap(client, bufnr)
 end
 
+clangd_cfg.cmd = { 'clangd', '--background-index' }
+clangd_cfg.root_markers = { 'compile_commands.json', 'compile_flags.txt' }
+clangd_cfg.filetypes = { 'c', 'cpp', 'cu' }
+
 return clangd_cfg

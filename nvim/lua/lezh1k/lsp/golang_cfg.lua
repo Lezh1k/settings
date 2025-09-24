@@ -12,7 +12,6 @@ golang_cfg.settings = {
 }
 
 golang_cfg.cmd = { "gopls" }
-golang_cfg.filetypes = { "go", "gomod", "gowork", ".git" }
-
+golang_cfg.filetypes = { "go", "gomod", "gowork" }
 
 return golang_cfg
