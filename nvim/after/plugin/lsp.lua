@@ -143,7 +143,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Make the menu appear but don't insert or select automatically
-vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+vim.opt.completeopt = { "menuone", "noinsert", "noselect", "popup" }
 -- vim.opt.shortmess:append("c") -- quieter completion messages
 
 -- Built-in LSP completion on-demand
