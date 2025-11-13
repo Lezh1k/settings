@@ -78,7 +78,9 @@ vim.lsp.config("gopls", {
 -- Python
 local pylsp_cfg = require("lezh1k.lsp.pylsp_cfg")
 vim.lsp.config("pylsp", {
+  cmd = { "pylsp" },
   settings = pylsp_cfg.settings,
+  filetypes = pylsp_cfg.filetypes,
   on_attach = function(client, bufnr)
     pylsp_cfg.on_attach(client, bufnr)
     on_attach(client, bufnr)
@@ -88,6 +90,8 @@ vim.lsp.config("pylsp", {
 
 -- TypeScript
 vim.lsp.config("ts_ls", {
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     on_attach_lsp_signature(client, bufnr)
@@ -101,7 +105,7 @@ vim.lsp.config("rust-analyzer", {
     on_attach_lsp_signature(client, bufnr)
   end,
   cmd = { "rust-analyzer" },
-  filetypes = { "rs" },
+  filetypes = { "rs", "rust" },
 })
 
 local ft_servers = {

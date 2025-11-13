@@ -28,6 +28,14 @@ require("lazy").setup({
   { "nvim-lualine/lualine.nvim" },
 
   {
+    'MeanderingProgrammer/render-markdown.nvim',
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },   -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    opts = {},
+  },
+
+  {
     "nvim-telescope/telescope.nvim",
     -- tag = '0.1.8',
     branch = "0.1.x",
@@ -63,8 +71,8 @@ require("lazy").setup({
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",  -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
       -- Only one of these is needed.
       "nvim-telescope/telescope.nvim", -- optional
     },

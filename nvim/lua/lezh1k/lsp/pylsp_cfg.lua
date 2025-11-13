@@ -10,6 +10,7 @@ pylsp_cfg.settings = {
     } -- plugins
   } -- pylsp
 }
+pylsp_cfg.filetypes = { "python", "py" }
 
 function pylsp_cfg.save_and_run()
   vim.cmd([[w]])
