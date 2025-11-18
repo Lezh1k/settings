@@ -1,3 +1,4 @@
+local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 -- FIND
 local function find_all_files()
@@ -36,7 +37,7 @@ local new_maker = function(filepath, bufnr, opts)
   end)
 end
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
     buffer_previewer_maker = new_maker,
     layout_strategy = 'flex',
