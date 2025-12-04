@@ -13,11 +13,26 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
 -- LSP
 -- -- symbols
+
+local lsp_refs = function()
+  return builtin.lsp_references({
+    show_line = false,
+    trim_text = true,
+  })
+end
+
+local lsp_impls = function()
+  return builtin.lsp_implementations({
+    show_line = false,
+    trim_text = true,
+  })
+end
+
 vim.keymap.set("n", "<leader>sl", builtin.lsp_document_symbols, {})
-vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
-vim.keymap.set("n", "gr", builtin.lsp_references, {})
-vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
-vim.keymap.set("n", "gi", builtin.lsp_implementations, {})
+vim.keymap.set("n", "<leader>gr", lsp_refs, {})
+vim.keymap.set("n", "gr", lsp_refs, {})
+vim.keymap.set("n", "<leader>gi", lsp_impls, {})
+vim.keymap.set("n", "gi", lsp_impls, {})
 vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, {})
 vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 vim.keymap.set("n", "go", builtin.lsp_type_definitions, {})
@@ -37,10 +52,20 @@ local new_maker = function(filepath, bufnr, opts)
   end)
 end
 
+
 telescope.setup {
   defaults = {
     buffer_previewer_maker = new_maker,
-    layout_strategy = 'flex',
-    path_display = "shorten",
+    layout_strategy = "flex",
+    layout_config = {
+      flex = {
+        flip_columns = 120,
+        flip_lines = 40,
+      },
+    },
+    path_display = { "truncate" },
+    file_ignore_patterns = {
+      ".git", -- ignore everything in .git folder
+    },
   }
 }
