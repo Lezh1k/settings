@@ -12,11 +12,14 @@ int main(int argc, char *argv[]) {
     perror("getloadavg");
     return 1;
   }
+  long ncpu = sysconf(_SC_NPROCESSORS_ONLN);
+  if (ncpu < 1)
+    ncpu = 1;
 
   static const char *green = "#00db16";
   static const char *yellow = "#ffff40";
   static const char *red = "#c90007";
-  double percent = la[0] * 100.;
+  double percent = (la[0] / (double)ncpu) * 100.;
 
   const char *color = green;
   if (percent < 50) {
@@ -26,7 +29,8 @@ int main(int argc, char *argv[]) {
   } else {
     color = red;
   }
-  printf("{\"full_text\": \"CPU: %.2f%%\", \"color\": \"%s\"}\n", percent, color);
+  printf("{\"full_text\": \"CPU: %.2f%%\", \"color\": \"%s\"}\n", percent,
+         color);
 
   return 0;
 }
