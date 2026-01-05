@@ -1,7 +1,7 @@
 separator_block_width=15
 
 [cpu]
-command=./cpu_usage2/cpu_usage2
+command=./linux/cpu_usage2/cpu_usage2
 interval=persist
 format=json
 markup=pango
@@ -11,39 +11,39 @@ CRIT_PERCENT=80
 DECIMALS=2
 
 [memory1]
-command=./memory/memory
+command=./linux/memory/memory
 interval=10
 label=RAM: 
 
 [disk]
-command=./disk/disk
+command=./linux/disk/disk
 interval=30
 ALERT_LOW=10
 LABEL=HDD (home):
 
 [iface]
-command=./iface/iface
+command=./linux/iface/iface
 interval=10
 #color=#00ff00
 
 [battery]
-command=./battery/battery
+command=./linux/battery/battery
 interval=30
 LABEL=⚡
 
 [volume-pipewire]
-command=./volume-pipewire/volume-pipewire
+command=./linux/volume-pipewire/volume-pipewire
 interval=persist
 format=json
 SUBSCRIBE=1
 USE_ALSA_NAME=1
 
 [brightness]
-command=./brightness/bin/brightness -a /sys/class/backlight/intel_backlight/actual_brightness -m /sys/class/backlight/intel_backlight/max_brightness
+command=./linux/brightness/bin/brightness -a /sys/class/backlight/intel_backlight/actual_brightness -m /sys/class/backlight/intel_backlight/max_brightness
 interval=persist
 
 [lang]
-command=./xkb_layout/xkb_layout
+command=./linux/xkb_layout/xkb_layout
 interval=persist
 
 [time]
