@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/lezh1k/.config/i3blocks/memory/build",
+  "command": "/usr/bin/cc  -I/home/lezh1k/.config/i3blocks/memory/inc -O2 -std=gnu99 -Wall -Wextra -pedantic -o CMakeFiles/blocks_memory.dir/src/main.c.o -c /home/lezh1k/.config/i3blocks/memory/src/main.c",
+  "file": "/home/lezh1k/.config/i3blocks/memory/src/main.c",
+  "output": "CMakeFiles/blocks_memory.dir/src/main.c.o"
+}
+]

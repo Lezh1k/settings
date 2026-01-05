@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/lezh1k/.config/i3blocks/net/build",
+  "command": "/usr/bin/cc  -I/home/lezh1k/.config/i3blocks/net/inc -O2 -std=gnu99 -Wall -Wextra -pedantic -o CMakeFiles/blocks_net.dir/src/main.c.o -c /home/lezh1k/.config/i3blocks/net/src/main.c",
+  "file": "/home/lezh1k/.config/i3blocks/net/src/main.c",
+  "output": "CMakeFiles/blocks_net.dir/src/main.c.o"
+}
+]

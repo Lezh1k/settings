@@ -1,0 +1,1 @@
+/usr/bin/cc -O2 -Xlinker --dependency-file=CMakeFiles/blocks_net.dir/link.d CMakeFiles/blocks_net.dir/src/main.c.o -o blocks_net

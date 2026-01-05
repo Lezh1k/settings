@@ -1,0 +1,42 @@
+separator_block_width=15
+
+[cpu]
+command=./freebsd/cpu/build/blocks_cpu
+interval=10
+format=json
+
+[mem]
+command=./freebsd/memory/build/blocks_memory
+interval=10
+format=json
+
+[disk]
+command=./freebsd/disk/disk
+interval=60
+ALERT_LOW=10
+LABEL=HDD (home):
+
+[net]
+command=./freebsd/net/build/blocks_net
+interval=10
+
+[battery]
+command=./freebsd/battery/batt.sh
+interval=15
+LABEL=⚡
+
+[volume-pipewire]
+command=./freebsd/volume-pipewire/volume-pipewire
+interval=persist
+format=json
+SUBSCRIBE=1
+USE_ALSA_NAME=1
+
+[lang]
+command=./freebsd/xkb_layout/xkb_layout
+interval=persist
+
+[time]
+#command=echo $(TZ=":Asia/Bishkek" date '+%Y-%m-%d %R |') $(TZ=":Europe/Berlin" date '+%R')
+command=echo $(TZ=":Turkey" date '+%Y-%m-%d %R |') $(TZ=":Asia/Bishkek" date '+%R')
+interval=5
