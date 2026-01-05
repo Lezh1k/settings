@@ -1,9 +1,0 @@
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/blocks_memory.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/package.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/package_source.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/edit_cache.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/rebuild_cache.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/list_install_components.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/install.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/install/local.dir
-/home/lezh1k/.config/i3blocks/memory/build/CMakeFiles/install/strip.dir

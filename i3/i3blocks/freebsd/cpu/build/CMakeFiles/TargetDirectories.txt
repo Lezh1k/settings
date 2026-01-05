@@ -1,9 +1,0 @@
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/blocks_cpu.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/package.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/package_source.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/edit_cache.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/rebuild_cache.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/list_install_components.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/install.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/install/local.dir
-/home/lezh1k/.config/i3blocks/cpu/build/CMakeFiles/install/strip.dir
