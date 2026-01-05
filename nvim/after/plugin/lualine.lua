@@ -23,9 +23,9 @@ ll.setup {
   sections = {
     lualine_a = { 'mode' },
     lualine_b = { 'branch' },
-    lualine_c = { 'buffers' },
-    lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { 'progress' },
+    lualine_c = { 'buffers'},
+    lualine_x = { 'selectioncount', 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress'},
     lualine_z = { 'location' }
   },
 

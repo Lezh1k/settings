@@ -17,7 +17,7 @@ label=RAM:
 
 [disk]
 command=./disk/disk
-interval=60
+interval=30
 ALERT_LOW=10
 LABEL=HDD (home):
 

@@ -184,7 +184,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "%a\n<b>%s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -493,3 +493,12 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+[teams.microsoft.com]
+    summary = *teams.microsoft.com*
+    timeout = 4000
+    urgency = normal
+
+[chromium]
+    appname = *Chromium
+    timeout = 4000
+    urgency = normal
