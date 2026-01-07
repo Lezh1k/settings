@@ -1,4 +1,4 @@
-separator_block_width=15
+separator_block_width=10
 
 [cpu]
 command=./freebsd/cpu/build/blocks_cpu
@@ -23,7 +23,7 @@ interval=10
 [battery]
 command=./freebsd/battery/batt.sh
 interval=15
-LABEL=⚡
+format=json
 
 [volume-pipewire]
 command=./freebsd/volume-pipewire/volume-pipewire
