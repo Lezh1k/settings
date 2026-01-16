@@ -1,0 +1,6 @@
+[Unit]
+Description=LazyASS notification service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/lazyass.sh

@@ -184,7 +184,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 1%- > /dev/null # decrease sc
 # finds out, if available)
 bar {
         # i3bar_command i3bar --transparency
-	status_command /home/lezh1k/SRC/not_work/i3blocks/build/i3blocks
+        # status_command /home/lezh1k/SRC/not_work/i3blocks/build/i3blocks
+        status_command i3blocks
         position top
         
         colors {
@@ -207,7 +208,7 @@ exec_always "setxkbmap -model pc105 -layout us,ru -variant ,, -option grp:alt_sh
 bindsym $mod+Shift+Delete exec "i3lock --color=010101 -t -f"
 
 #wallpapers
-exec_always --no-startup-id feh --bg-scale ~/Info/wallpapers/wallpaper_bsd.jpg
+exec_always --no-startup-id feh --bg-scale ~/Info/wallpapers/wallpaper_arch.jpg
 
 #autostart
 for_window [class="Qmmp"] move to workspace $ws10
@@ -222,7 +223,8 @@ assign [class="qutebrowser"] $ws2
 
 exec /usr/bin/qmmp
 exec /usr/bin/Telegram
-exec /usr/bin/qutebrowser
+exec /usr/bin/chromium
+# exec /usr/bin/qutebrowser
 # exec /usr/bin/firefox
 # exec /usr/bin/slack
 # exec /usr/bin/teams

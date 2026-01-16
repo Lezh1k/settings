@@ -1,0 +1,10 @@
+[Unit]
+Description=LazyASS notification timer
+
+[Timer]
+OnCalendar=Mon..Fri 12..20:00
+AccuracySec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
