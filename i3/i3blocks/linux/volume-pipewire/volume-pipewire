@@ -154,28 +154,11 @@ sed 's/.*= "\(.*\)".*/\1/')
         [[ $VOL -le $AUDIO_MED_THRESH ]] && SYMB=$AUDIO_MED_SYMBOL && COLOR=$COLOR_YELLOW
         [[ $VOL -le $AUDIO_LOW_THRESH ]] && SYMB=$AUDIO_LOW_SYMBOL && COLOR=$COLOR_GREEN
 				[[ $VOL -eq 0 ]] && COLOR=$MUTED_COLOR
-        # SYMB=$AUDIO_HIGH_SYMBOL
-        # [[ $VOL -le $AUDIO_MED_THRESH ]] && SYMB=$AUDIO_MED_SYMBOL
-        # [[ $VOL -le $AUDIO_LOW_THRESH ]] && SYMB=$AUDIO_LOW_SYMBOL
-        # COLOR=$DEFAULT_COLOR
     else
         SYMB=$AUDIO_MUTED_SYMBOL
         COLOR=$MUTED_COLOR
     fi
     printf '{"full_text": "%-2s:%3s", "color": "%s"}\n' $SYMB $VOL $COLOR
-
-    # if [[ $ACTIVE = "" ]] ; then
-    #     echo "Sound inactive"
-    #     COLOR='#222225'
-    # fi
-    #
-    # if [[ $SUBSCRIBE == 1 ]] ; then
-    #     print_format "$LONG_FORMAT"
-    # else
-    #     print_format "$LONG_FORMAT"
-    #     print_format "$SHORT_FORMAT"
-    #     echo "$COLOR"
-    # fi
 }
 
 print_block

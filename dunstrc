@@ -494,11 +494,12 @@
 #
 # vim: ft=cfg
 [teams.microsoft.com]
-    summary = *teams.microsoft.com*
+    body = *teams.microsoft.com*
+    # summary = *teams.microsoft.com*
     timeout = 4000
     urgency = normal
 
 [chromium]
-    appname = *Chromium
+    appname = *Chromium*
     timeout = 4000
     urgency = normal

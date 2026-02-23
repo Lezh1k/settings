@@ -18,6 +18,7 @@ vim.opt.backupdir = '/home/lezh1k/.local/share/nvim/backup'
 vim.opt.undofile = false
 
 vim.opt.cmdheight = 0
+vim.opt.filetype = 'on'
 
 -- vim.opt.hlsearch = false
 -- Create an augroup named 'vimrc_incsearch_highlight'

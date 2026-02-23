@@ -73,6 +73,7 @@ vim.lsp.config("gopls", {
   end,
   cmd = golang_cfg.cmd,
   filetypes = golang_cfg.filetypes,
+  root_dir = golang_cfg.pf_get_root_dir(vim.api.nvim_buf_get_name(0)),
 })
 
 -- Python
