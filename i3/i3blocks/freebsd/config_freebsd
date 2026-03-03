@@ -25,12 +25,10 @@ command=./freebsd/battery/batt.sh
 interval=15
 format=json
 
-[volume-pipewire]
-command=./freebsd/volume-pipewire/volume-pipewire
+[volume]
+command=/home/lezh1k/SRC/not_work/volumectl/build/volumectl
 interval=persist
 format=json
-SUBSCRIBE=1
-USE_ALSA_NAME=1
 
 [lang]
 command=./freebsd/xkb_layout/xkb_layout
