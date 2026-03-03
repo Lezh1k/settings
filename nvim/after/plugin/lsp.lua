@@ -24,9 +24,10 @@ local function on_attach(_, bufnr)
 end
 
 -- LSP Signature
+local sign = require("lsp_signature")
+sign.setup()
+
 local function on_attach_lsp_signature(_, bufnr)
-  local sign = require("lsp_signature")
-  sign.setup()
   sign.on_attach({
     bind = true,
     hint_prefix = "->",
@@ -42,7 +43,6 @@ vim.lsp.config("lua_ls", {
   on_attach = function(client, bufnr)
     lua_cfg.on_attach(client, bufnr)
     on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
   end,
   cmd = lua_cfg.cmd,
   root_markers = lua_cfg.root_markers,
@@ -55,7 +55,6 @@ vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)
     clangd_cfg.on_attach(client, bufnr)
     on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
   end,
   cmd = clangd_cfg.cmd,
   root_markers = clangd_cfg.root_markers,
@@ -69,7 +68,6 @@ vim.lsp.config("gopls", {
   on_attach = function(client, bufnr)
     -- golang_cfg.on_attach(client, bufnr) -- uncomment if needed
     on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
   end,
   cmd = golang_cfg.cmd,
   filetypes = golang_cfg.filetypes,
@@ -85,7 +83,6 @@ vim.lsp.config("pylsp", {
   on_attach = function(client, bufnr)
     pylsp_cfg.on_attach(client, bufnr)
     on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
   end,
 })
 
@@ -95,7 +92,6 @@ vim.lsp.config("ts_ls", {
   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    on_attach_lsp_signature(client, bufnr)
   end,
 })
 

@@ -1,12 +1,11 @@
 local golang_cfg = {}
 
 local function get_root_dir(fname)
-  return vim.fs.dirname(
-    vim.fs.find({ "go.work", "go.mod", ".git" }, {
-      path = fname,
-      upward = true,
-    })[1]
-  )
+  local marker = vim.fs.find({ "go.work", "go.mod", ".git" }, {
+    path = fname,
+    upward = true,
+  })[1]
+  return vim.fs.dirname(marker) or vim.fs.dirname(fname)
 end
 
 golang_cfg.settings = {
@@ -17,7 +16,9 @@ golang_cfg.settings = {
     --   unusedparams = true,
     -- },
     gofumpt = true,
-    staticcheck = true,
+    staticcheck = false,
+    diagnosticsTrigger = "Save",
+    vulncheck = "Off",
   },
 }
 
