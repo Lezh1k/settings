@@ -66,7 +66,7 @@ local golang_cfg = require("lezh1k.lsp.golang_cfg")
 vim.lsp.config("gopls", {
   settings = golang_cfg.settings,
   on_attach = function(client, bufnr)
-    -- golang_cfg.on_attach(client, bufnr) -- uncomment if needed
+    golang_cfg.on_attach(client, bufnr) -- uncomment if needed
     on_attach(client, bufnr)
   end,
   cmd = golang_cfg.cmd,

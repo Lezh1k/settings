@@ -8,6 +8,14 @@ local function get_root_dir(fname)
   return vim.fs.dirname(marker) or vim.fs.dirname(fname)
 end
 
+local function on_attach_keymap(_, _)
+  vim.keymap.set("i", "<A-/>", "//////////////////////////////////////////////////////////////")
+end
+
+function golang_cfg.on_attach(client, bufnr)
+  on_attach_keymap(client, bufnr)
+end
+
 golang_cfg.settings = {
   gopls = {
     -- completeUnimported = true,
@@ -16,9 +24,9 @@ golang_cfg.settings = {
     --   unusedparams = true,
     -- },
     gofumpt = true,
-    staticcheck = false,
-    diagnosticsTrigger = "Save",
-    vulncheck = "Off",
+    -- staticcheck = false,
+    -- diagnosticsTrigger = "Save",
+    -- vulncheck = "Off",
   },
 }
 

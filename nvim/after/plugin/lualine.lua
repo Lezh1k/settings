@@ -26,7 +26,7 @@ ll.setup {
     lualine_c = { 'buffers'},
     lualine_x = { 'selectioncount', 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress'},
-    lualine_z = { 'location' }
+    lualine_z = { 'lsp_status', 'location' }
   },
 
   inactive_sections = {
