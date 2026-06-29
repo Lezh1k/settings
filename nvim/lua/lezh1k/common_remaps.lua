@@ -29,7 +29,7 @@ vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
 -- Naviagate buffers
 vim.keymap.set("n", "<S-l>", "<CMD>bnext<CR>", opts)
 vim.keymap.set("n", "<S-h>", "<CMD>bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>bd", "<CMD>bd<CR>", opts)
+vim.keymap.set("n", "<leader>bd", "<CMD>bp | bd #<CR>", opts)
 
 -- Move text up and down
 vim.keymap.set("n", "<C-S-j>", "<CMD>m .+1<CR>==", opts)

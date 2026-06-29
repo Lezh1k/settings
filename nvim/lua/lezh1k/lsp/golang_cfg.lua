@@ -18,13 +18,13 @@ end
 
 golang_cfg.settings = {
   gopls = {
-    -- completeUnimported = true,
-    -- usePlaceholders = true,
-    -- analyzes = {
-    --   unusedparams = true,
-    -- },
+    completeUnimported = true,
+    usePlaceholders = true,
+    analyses = {
+      unusedparams = true,
+    },
     gofumpt = true,
-    -- staticcheck = false,
+    staticcheck = true,
     -- diagnosticsTrigger = "Save",
     -- vulncheck = "Off",
   },

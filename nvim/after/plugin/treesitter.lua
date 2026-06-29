@@ -1,7 +1,8 @@
-require('nvim-treesitter.config').setup {
+local ts = require('nvim-treesitter')
+ts.install({ "c", "cpp", "lua", "python", "go", "asm", "make" })
+ts.setup {
+  install_dir = vim.fn.stdpath("data") .. "/site",
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "cpp", "lua", "python", "go", "asm", "make" },
-  ignore_install = {},
   modules = {},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -29,3 +30,10 @@ require('nvim-treesitter.config').setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go", "c", "cpp", "py", "ts" },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
