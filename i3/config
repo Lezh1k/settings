@@ -170,7 +170,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #volume controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
@@ -184,7 +184,6 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 1%- > /dev/null # decrease sc
 # finds out, if available)
 bar {
         status_command /home/lezh1k/SRC/not_work/i3blocks/build/i3blocks
-        # status_command i3blocks
         position top
         
         colors {
@@ -204,10 +203,13 @@ bar {
 #language
 exec_always "setxkbmap -model pc105 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
 #lock
-bindsym $mod+Shift+Delete exec "i3lock --color=010101 -t -f"
+bindsym $mod+Shift+Delete exec "i3lock --color=101010 -t -f -k"
 
 #wallpapers
-exec_always --no-startup-id feh --bg-scale ~/Info/wallpapers/wallpaper_arch.jpg
+exec_always --no-startup-id feh --bg-scale ~/Info/wallpapers/wallpaper_bsd.jpg
+
+#compositor
+exec_always --no-startup-id picom --backend glx &
 
 #autostart
 for_window [class="Qmmp"] move to workspace $ws10
@@ -220,10 +222,7 @@ assign [class="chromium"] $ws2
 assign [class="Chromium"] $ws2
 assign [class="qutebrowser"] $ws2
 
-exec /usr/bin/qmmp
-exec /usr/bin/Telegram
-# exec /usr/bin/chromium
-exec /usr/bin/qutebrowser
-# exec /usr/bin/firefox
-# exec /usr/bin/slack
-# exec /usr/bin/teams
+exec /usr/local/bin/qmmp-1
+exec /usr/local/bin/Telegram
+# exec /usr/local/bin/qutebrowser
+exec /usr/local/bin/chrome
