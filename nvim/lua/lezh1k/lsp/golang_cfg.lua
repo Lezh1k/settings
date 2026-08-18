@@ -20,11 +20,11 @@ golang_cfg.settings = {
   gopls = {
     completeUnimported = true,
     usePlaceholders = true,
-    analyses = {
-      unusedparams = true,
-    },
+    -- analyses = {
+    --   -- unusedparams = true,
+    -- },
     gofumpt = true,
-    staticcheck = true,
+    -- staticcheck = true,
     -- diagnosticsTrigger = "Save",
     -- vulncheck = "Off",
   },
