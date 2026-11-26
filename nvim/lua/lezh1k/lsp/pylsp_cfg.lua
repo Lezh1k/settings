@@ -26,7 +26,7 @@ end
 
 local function on_attach_keymap(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
-  vim.keymap.set("n", "<C-R>", pylsp_cfg.save_and_run, opts)
+  vim.keymap.set("n", "<C-E>", pylsp_cfg.save_and_run, opts)
 end
 
 function pylsp_cfg.on_attach(client, bufnr)

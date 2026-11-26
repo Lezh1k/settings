@@ -89,3 +89,7 @@ vim.diagnostic.config({
   -- },
   -- virtual_text = false
 })
+
+-- CubeMX-generated comments contain "ex: printf(...)" which Vim parses as a
+-- modeline, causing E518 on BufReadPost.
+vim.opt.modeline = false
