@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 11 
+font pango:DejaVu Sans Mono 11
 
 # Before i3 v4.8, we used to recommend this one as the default:
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1 
@@ -30,9 +30,8 @@ font pango:DejaVu Sans Mono 11
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-# bindsym $mod+Return exec kitty
 bindsym $mod+Return exec alacritty -e tmux
+# bindsym $mod+t exec alacritty -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -90,10 +89,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 floating_minimum_size 0 x 17
 # focus the parent container
-# bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
 # screenshot
 bindsym Print exec flameshot gui
@@ -134,6 +133,14 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+# cmus "global" hotkeys
+# cmus-remote -u          # toggle play/pause
+# cmus-remote -n          # next track
+# cmus-remote -r          # previous track
+bindsym Control+Mod1+Next exec --no-startup-id cmus-remote -n
+bindsym Control+Mod1+Prior exec --no-startup-id cmus-remote -r
+bindsym Control+Mod1+Home exec --no-startup-id cmus-remote -u
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -183,7 +190,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 1%- > /dev/null # decrease sc
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command /home/lezh1k/SRC/not_work/i3blocks/build/i3blocks
+        status_command /home/lezh1k/SRC/not_work/i3blocks/i3blocks/build/i3blocks 2> /tmp/i3blocks.log
         # status_command i3blocks
         position top
         
@@ -201,17 +208,21 @@ bar {
         }
 }
 
+#X resources (Xft.dpi -> fixes alacritty/GUI scaling)
+# exec_always --no-startup-id xrdb -merge ~/.Xresources
+
 #language
 exec_always "setxkbmap -model pc105 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
 #lock
-bindsym $mod+Shift+Delete exec "i3lock --color=010101 -t -f"
+bindsym $mod+Shift+Delete exec "i3lock --color=010101 -t -f -k"
 
 #wallpapers
-exec_always --no-startup-id feh --bg-scale ~/Info/wallpapers/wallpaper_arch.jpg
+exec_always --no-startup-id feh --bg-scale ~/Info/wallpapers/wallpaper_arch_2.jpg
+
+#compositor
+exec_always --no-startup-id picom --backend glx &
 
 #autostart
-for_window [class="Qmmp"] move to workspace $ws10
-assign [class="Playlist"] $ws10
 assign [class="Telegram"] $ws1
 assign [class="Teams"] $ws1
 assign [class="Slack"] $ws1
@@ -219,11 +230,9 @@ assign [class="firefox"] $ws2
 assign [class="chromium"] $ws2
 assign [class="Chromium"] $ws2
 assign [class="qutebrowser"] $ws2
+assign [class="cmus"] $ws10
 
-exec /usr/bin/qmmp
+# exec /usr/bin/qmmp
+exec --no-startup-id alacritty --class cmus,cmus -e cmus
 exec /usr/bin/Telegram
-# exec /usr/bin/chromium
-exec /usr/bin/qutebrowser
-# exec /usr/bin/firefox
-# exec /usr/bin/slack
-# exec /usr/bin/teams
+exec /usr/bin/firefox

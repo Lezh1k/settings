@@ -25,10 +25,10 @@ command=./freebsd/battery/batt.sh
 interval=15
 format=json
 
-[volume]
-command=/home/lezh1k/SRC/not_work/volumectl/build/volumectl
-interval=persist
-format=json
+# [volume]
+# command=/home/lezh1k/SRC/not_work/volumectl/build/volumectl
+# interval=persist
+# format=json
 
 [lang]
 command=./freebsd/xkb_layout/xkb_layout

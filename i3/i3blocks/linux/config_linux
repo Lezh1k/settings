@@ -31,15 +31,8 @@ command=./linux/battery/battery
 interval=30
 LABEL=⚡
 
-# [volume-pipewire]
-# command=./linux/volume-pipewire/volume-pipewire
-# interval=persist
-# format=json
-# SUBSCRIBE=1
-# USE_ALSA_NAME=1
-
-[volume-snd-block]
-command=/home/lezh1k/SRC/not_work/volumectl/build/volumectl 2> /tmp/snd-block.log
+[volume]
+command=/home/lezh1k/SRC/not_work/volumectl/build/volumectl 2>/tmp/volumectl.log
 interval=persist
 format=json
 
