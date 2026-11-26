@@ -1,5 +1,7 @@
 -- vim.cmd[[set background=light]]
 -- vim.cmd[[colorscheme PaperColor]]
+
+--
 vim.cmd[[colorscheme PaperColorSlim]]
 -- Make background transparent
 vim.cmd([[
