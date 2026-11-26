@@ -2,7 +2,7 @@
 Description=LazyASS notification timer
 
 [Timer]
-OnCalendar=Mon..Fri 12..20:00
+OnCalendar=Mon..Fri 11..18:00
 AccuracySec=5min
 Persistent=true
 

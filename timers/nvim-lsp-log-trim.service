@@ -1,0 +1,6 @@
+[Unit]
+Description=Truncate Neovim LSP log if larger than 10MB
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/nvim_lsp_file_trim.sh
